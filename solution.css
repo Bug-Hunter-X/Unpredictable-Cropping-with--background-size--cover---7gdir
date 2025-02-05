@@ -1,0 +1,39 @@
+/* solution.css */
+#container {
+  width: 400px;
+  height: 300px;
+  background-image: url('your-image.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Or, for better control: */
+#container {
+  width: 400px;
+  height: 300px;
+  background-image: url('your-image.jpg');
+  background-size: contain; /* or specify exact pixel dimensions */
+  background-position: center;
+}
+
+/* Or a more complex solution */
+#container {
+  width: 400px;
+  height: 300px;
+  background-image: url('your-image.jpg');
+  background-position: center;
+}
+
+let container = document.getElementById('container');
+let img = new Image();
+img.onload = function() {
+  let ratio = this.width / this.height;
+  let containerRatio = container.offsetWidth / container.offsetHeight;
+
+  if(ratio > containerRatio){
+     container.style.backgroundSize = container.offsetWidth + 'px auto';
+  } else {
+     container.style.backgroundSize = 'auto ' + container.offsetHeight + 'px';
+  }
+};
+img.src = container.style.backgroundImage.slice(4, -1); 
